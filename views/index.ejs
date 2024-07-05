@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To-Do List - Index</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">  <!-- Container for styling -->
+        <h1 class="mb-4">To-Do List</h1>  <!-- Heading for the To-Do List -->
+      
+        <ul class="list-group">  <!-- Unordered list using Bootstrap's list-group -->
+          <% tasks.forEach(task => { %>  <!-- Loop through each task in the 'tasks' array -->
+            <li class="list-group-item">  <!-- List item for each task -->
+              <h5><%= task.title %></h5>  <!-- Display task title -->
+              <p><%= task.description %></p>  <!-- Display task description -->
+              <a href="/dashboard" class="btn btn-primary btn-sm">Dashboard</a>  <!-- Button to go to the Dashboard -->
+              <a href="/taskForm" class="btn btn-info btn-sm">Edit</a>  <!-- Button to edit the task -->
+              <form action="/api/v1/tasks/<%= task.id %>" method="POST" style="display: inline;">  <!-- Form for deleting a task -->
+                <input type="hidden" name="_method" value="DELETE">  <!-- Hidden input field for specifying DELETE method -->
+                <button type="submit" class="btn btn-danger btn-sm">Delete</button>  <!-- Button to delete the task -->
+              </form>
+            </li>
+          <% }); %>  <!-- End of forEach loop -->
+        </ul>
+        
+        <a href="/taskForm" class="btn btn-success mt-3">Add New Task</a>  <!-- Button to add a new task -->
+      </div>
+      
+
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
